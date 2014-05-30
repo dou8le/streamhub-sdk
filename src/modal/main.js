@@ -21,7 +21,8 @@ define([
         this.visible = false;
         this._attached = false;
         this._modalSubView = opts.modalSubView || null;
-
+        // The parent node that this will attach to when shown
+        this.parentNode = ModalView.el;
         View.call(this);
 
         var self = this;
@@ -73,14 +74,22 @@ define([
      *          for normal stackless behavior.
      */
     ModalView.prototype.show = function (modalSubView, stack) {
+        var self = this;
         if (stack || ModalView._stackedInstances.length && stack !== false) {
             this._stack();
         }
 
         // First hide any other modals
         $.each(ModalView.instances, function (i, modal) {
-            modal.hide();
+            if (modal === self) {
+                return;
+            }
+            if (modal.visible) {
+                modal.hide();
+            }
         });
+
+        this.$el.trigger('showing');
 
         $('body').css('overflow', 'hidden');
 
@@ -96,6 +105,7 @@ define([
         this.render();
 
         this.visible = true;
+        this.$el.trigger('shown');
     };
 
 
@@ -103,10 +113,12 @@ define([
      * Makes the modal and its content not visible
      */
     ModalView.prototype.hide = function () {
+        this.$el.trigger('hiding');
         this.$el.hide();
         this._detach();
         this.visible = false;
         $('body').css('overflow', 'auto');
+        this.$el.trigger('hidden');
     };
 
 
@@ -163,7 +175,7 @@ define([
      * @private
      */
     ModalView.prototype._attach = function () {
-        this.$el.appendTo(ModalView.$el);
+        this.$el.appendTo(this.parentNode);
         this._attached = true;
     };
 
