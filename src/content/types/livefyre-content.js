@@ -176,6 +176,15 @@ function($, Content, Annotator, LivefyreOpine, inherits) {
         return false;
     };
 
+    LivefyreContent.prototype.getLikes = function() {
+        var likes = [],
+            typeId = LivefyreOpine.enums.type.indexOf('LIKE');
+        for (var i=0; i < this.opines.length; i++) {
+            if(this.opines[i].relType === typeId) { likes.push(this.opines[i]); }
+        }
+        return likes;
+    };
+
     /**
      * Return whether this Content is featured in a StreamHub Collection
      * @return {boolean}

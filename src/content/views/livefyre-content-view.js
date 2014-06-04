@@ -2,6 +2,7 @@ define([
     'streamhub-sdk/jquery',
     'streamhub-sdk/auth',
     'streamhub-sdk/content/views/content-view',
+    'streamhub-sdk/content/views/liked-by-list-view',
     'streamhub-sdk/content/types/livefyre-content',
     'streamhub-sdk/content/types/livefyre-opine',
     'streamhub-sdk/ui/hub-button',
@@ -11,7 +12,7 @@ define([
     'streamhub-sdk/util',
     'inherits',
     'streamhub-sdk/debug'
-], function ($, Auth, ContentView, LivefyreContent, LivefyreOpine, HubButton, HubToggleButton, Liker, ContentTemplate, util, inherits, debug) {
+], function ($, Auth, ContentView, LivefyreLikedByListView, LivefyreContent, LivefyreOpine, HubButton, HubToggleButton, Liker, ContentTemplate, util, inherits, debug) {
     'use strict';
 
     var LIKE_REQUEST_LISTENER = false;
@@ -44,6 +45,8 @@ define([
 
         ContentView.call(this, opts);
 
+        this.likedByView = ('likedByView' in opts) ? opts.likedByView : this._createLikedByView();
+
         if (this.content) {
             this.content.on("opine", function(content) {
                 this._renderButtons();
@@ -57,6 +60,7 @@ define([
 
     LivefyreContentView.prototype.footerLeftSelector = '.content-footer-left';
     LivefyreContentView.prototype.footerRightSelector = '.content-footer-right';
+    LivefyreContentView.prototype.likedByElSelector = '.content-liked-by';
 
     LivefyreContentView.prototype.events = ContentView.prototype.events.extended({
         'contentLiked.hub': function (e) {
@@ -88,6 +92,21 @@ define([
         }
     };
 
+    LivefyreContentView.prototype._createLikedByView = function () {
+        var likedByView = new LivefyreLikedByListView({
+            'content': this.content
+        });
+        return likedByView;
+    };
+
+    LivefyreContentView.prototype._renderLikedByView = function () {
+        if (!(this.content instanceof LivefyreContent) || !this.likedByView) {
+            return;
+        }
+        this.likedByView.setElement(this.$el.find(this.likedByElSelector)[0]);
+        this.likedByView.render();
+    };
+
     /**
      * Render the content inside of the LivefyreContentView's element.
      * @returns {LivefyreContentView}
@@ -95,6 +114,7 @@ define([
     LivefyreContentView.prototype.render = function () {
         ContentView.prototype.render.call(this);
         this._renderButtons();
+        this._renderLikedByView();
         return this;
     };
 
