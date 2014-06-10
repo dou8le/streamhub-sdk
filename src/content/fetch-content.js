@@ -46,7 +46,9 @@ var fetchContent = function (opts, callback) {
             contents = [];
 
         //Prepare StateToContents to handle the received states
-        var trans = opts.stateToContent || new StateToContent(opts);
+        var trans = opts.stateToContent || new StateToContent({
+            replies: true
+        });
         trans.setAuthors(data.authors);
         
         //Listen for states that have been transformed into Content
