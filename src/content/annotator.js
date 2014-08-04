@@ -64,6 +64,11 @@ define([
         var content = opts.content || Storage.get(opts.contentId);
         var collection = opts.collection;
 
+        if (content) {
+            this.annotate(content, opts.annotationDiff, opts.silence);
+            return;
+        }
+
         if (opts.contentId && collection) {
             // Fetch content
             if (collection) {
@@ -75,12 +80,6 @@ define([
                 }.bind(this));
             }
         }
-
-        if (!content) {
-            return;
-        }
-
-        this.annotate(content, opts.annotationDiff, opts.silence);
     };
 
     /**
