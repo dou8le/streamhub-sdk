@@ -68,6 +68,9 @@ define([
             // Fetch content
             if (collection) {
                 collection.fetchContent(opts.contentId, function (err, content) {
+                    if (! content) {
+                        return;
+                    }
                     this.annotate(content, opts.annotationDiff, opts.silence);
                 }.bind(this));
             }
