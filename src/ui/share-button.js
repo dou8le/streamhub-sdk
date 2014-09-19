@@ -4,7 +4,11 @@ function ShareButton() {
     StreamhubShareButton.apply(this, arguments);
 
 }
-ShareButton.prototype = Object.create(StreamhubShareButton.prototype);
+
+var proto  = function(){}
+proto.prototype = StreamhubShareButton.prototype
+
+ShareButton.prototype = new proto();
 ShareButton.prototype.constructor = ShareButton;
 
 ShareButton.prototype.template = function () {
