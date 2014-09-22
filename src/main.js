@@ -1,12 +1,11 @@
 define([
-    'streamhub-sdk/jquery',
     'text!streamhub-sdk/version.txt',
     'streamhub-sdk/collection',
     'streamhub-sdk/content',
     'streamhub-sdk/content/views/content-list-view',
     'streamhub-sdk/views/list-view',
     'mout/string/trim'],
-function($, version, Collection, Content, ContentListView, ListView) {
+function(version, Collection, Content, ContentListView, ListView, trim) {
     'use strict';
 
     return {
