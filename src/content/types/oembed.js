@@ -1,8 +1,9 @@
 define([
     'streamhub-sdk/jquery',
     'streamhub-sdk/content',
-    'inherits'],
-function($, Content, inherits) {
+    'inherits',
+    'mout/string/trim'],
+function($, Content, inherits, trim) {
     'use strict';
 
     /**
@@ -23,7 +24,7 @@ function($, Content, inherits) {
 
         $.extend(this, json);
 
-        if (typeof this.html !== 'undefined' && $.trim(this.html) === "") {
+        if (typeof this.html !== 'undefined' && trim(this.html) === "") {
             this.html = null;
         }
     };

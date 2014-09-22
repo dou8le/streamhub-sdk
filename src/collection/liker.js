@@ -1,6 +1,6 @@
 define([
     'streamhub-sdk/auth',
-    'streamhub-sdk/collection/clients/write-client',
+    'streamhub-sdk/collection/clients/write-client'
 ], function (Auth, LivefyreWriteClient) {
     'use strict';
 
