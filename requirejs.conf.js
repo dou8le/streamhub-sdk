@@ -1,73 +1,73 @@
 require.config({
   paths: {
-    jquery: 'lib/jquery/jquery',
-    text: 'lib/requirejs-text/text',
-    base64: 'lib/base64/base64',
-    hogan: 'lib/hogan/web/builds/2.0.0/hogan-2.0.0.amd',
-    hgn: 'lib/requirejs-hogan-plugin/hgn',
-    json: 'lib/requirejs-plugins/src/json',
-    jasmine: 'lib/jasmine/lib/jasmine-core/jasmine',
-    'jasmine-html': 'lib/jasmine/lib/jasmine-core/jasmine-html',
-    'jasmine-jquery': 'lib/jasmine-jquery/lib/jasmine-jquery',
-    'event-emitter': 'lib/event-emitter/src/event-emitter',
-    inherits: 'lib/inherits/inherits',
-    blanket: 'lib/blanket/dist/qunit/blanket',
-    'blanket-jasmine': 'lib/blanket/dist/jasmine/blanket_jasmine',
-    'mout': 'lib/mout/src',
-    observer: 'lib/observer/src/observer',
-    debug: 'lib/debug/debug'
+    jquery: '/components/jquery/jquery',
+    text: '/components/requirejs-text/text',
+    base64: '/components/base64/base64',
+    hogan: '/components/hogan/web/builds/2.0.0/hogan-2.0.0.amd',
+    hgn: '/components/requirejs-hogan-plugin/hgn',
+    json: '/components/requirejs-plugins/src/json',
+    jasmine: '/components/jasmine/lib/jasmine-core/jasmine',
+    'jasmine-html': '/components/jasmine/lib/jasmine-core/jasmine-html',
+    'jasmine-jquery': '/components/jasmine-jquery/lib/jasmine-jquery',
+    'event-emitter': '/components/event-emitter/src/event-emitter',
+    inherits: '/components/inherits/inherits',
+    blanket: '/components/blanket/dist/qunit/blanket',
+    'blanket-jasmine': '/components/blanket/dist/jasmine/blanket_jasmine',
+    'mout': '/components/mout/src',
+    observer: '/components/observer/src/observer',
+    debug: '/components/debug/debug'
   },
   packages: [{
     name: "streamhub-sdk",
-    location: "src"
+    location: "/components/streamhub-sdk/src"
   },{
     name: "streamhub-sdk/auth",
-    location: "src/auth"
+    location: "/components/streamhub-sdk/src/auth"
   },{
     name: "streamhub-sdk/collection",
-    location: "src/collection"
+    location: "/components/streamhub-sdk/src/collection"
   },{
     name: "streamhub-sdk/content",
-    location: "src/content"
+    location: "/components/streamhub-sdk/src/content"
   },{
     name: "streamhub-sdk/modal",
-    location: "src/modal"
+    location: "/components/streamhub-sdk/src/modal"
   },{
     name: "streamhub-sdk/ui",
-    location: "src/ui"
+    location: "/components/streamhub-sdk/src/ui"
   },{
     name: "streamhub-sdk/jquery",
-    location: "src",
+    location: "/components/streamhub-sdk/src",
     main: "jquery"
   },{
     name: "streamhub-sdk-tests",
     location: "tests"
   },{
     name: "stream",
-    location: "lib/stream/src"
+    location: "/components/stream/src"
   },{
     name: "view",
-    location: "lib/view/src",
+    location: "/components/view/src",
     main: "view"
   },{
     name: "auth",
-    location: "lib/auth/src"
+    location: "/components/auth/src"
   },{
     name: "livefyre-auth",
-    location: "lib/livefyre-auth/src"
+    location: "/components/livefyre-auth/src"
   },{
     name: "livefyre-auth-tests",
-    location: "lib/livefyre-auth/test"
+    location: "/components/livefyre-auth/test"
   },{
     name: 'streamhub-share',
-    location: 'lib/streamhub-share/src',
+    location: '/components/streamhub-share/src',
     main: 'share-button.js'
   },{
     name: 'streamhub-ui',
-    location: 'lib/streamhub-ui/src'
+    location: '/components/streamhub-ui/src'
   },{
     name: "livefyre-bootstrap",
-    location: "lib/livefyre-bootstrap/src"
+    location: "/components/livefyre-bootstrap/src"
   }],
   shim: {
     jquery: {
