@@ -46,6 +46,7 @@ define(['streamhub-sdk/jquery'], function($) {
             type: opts.method || 'GET',
             url: opts.url,
             data: opts.data,
+            cache: false,
             dataType: opts.dataType || this._getDataType()
         });
 
